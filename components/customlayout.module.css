@@ -1,0 +1,24 @@
+.parent_container{
+    background-color: black;
+    scroll-behavior: smooth;
+   
+}
+
+.container{
+    max-width: 36rem;
+    padding: 3rem 1rem;
+    margin: 0 auto ;
+    background-color: black;
+    color: white;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .backToHome {
+    margin: 3rem 0 0;
+  }
+  

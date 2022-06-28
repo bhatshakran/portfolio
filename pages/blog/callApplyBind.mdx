@@ -1,0 +1,86 @@
+import Image from "next/image";
+import Head from "next/head";
+import CustomLayout from "../../components/customlayout";
+
+
+# Call, Apply and Bind
+
+## Bind:
+
+Lets understand this with an example:
+
+
+```
+
+var car ={
+  brand:'Hyundai',
+  model:'Accent',
+  getFullSpecs: function(){
+    var fullspecs = this.brand + ' ' + this.model;
+    return fullspecs
+  }
+
+}
+
+var logCarSpecs = function(lang1, lang2){
+  console.log('Logged' + ' ' + this.getFullSpecs())
+  console.log(lang1 + ' ' + lang2 )
+}
+
+logCarSpecs('en', 'es')
+```
+#### Code Walkthrough:
+- We create an object (car) having properties brand and model set to hyundai and Accent respectively.
+- The car object also has a method getFullSpecs which returns the details of the car.
+- Then we are creating a function expression logCarSpecs which logs the car details to the console.
+- And then we invoke the function by writing logCarSpecs()
+
+When we run this code, what we find is this:
+<Image src='/images/undefinederror.png' width='600' height='80' />
+
+
+
+
+
+**So why is this big fat error popping?**
+
+
+#### Explanation:
+When our function logCarSpecs runs, the js compiler sees  'this'.getFullSpecs() and  it
+tries to find the getFullSpecs method in the global object (window).
+One might ask why does the js engine try to **find the getFullSpecs in the window object?**
+Because our function statement is lexically sitting on the window object and 'this' inside a function 
+refers to the global object.
+
+Now since the global object doesnt have a function called getFullSpecs it returns with an undefined error in the console.
+
+
+#### How do we fix this:
+
+We want the 'this' keyword to point to the  car object.
+
+Here comes the bind method.
+The bind method takes two arguments:
+- The thisArg
+- Optional args [will talk about that later]
+
+Whatever value we pass as the first parameter to the **bind function it points the this keyword to the value 
+(usually an object) that we passed in as the first paramter**.If a primitive value is passed as the thisArg,
+it gets automatically converted to an object.
+
+
+Now if we pass the car object to the bind function
+```
+var bindedSpecs = logCarSpecs.bind(car)
+bindedSpecs('en', 'es')
+```
+
+Lets run the code
+<Image src='/images/bindresult.png' width='600' height='200' />
+Boom! We get the result that we wanted
+
+
+
+
+
+export default ({ children }) => <CustomLayout >{children}</CustomLayout>;
