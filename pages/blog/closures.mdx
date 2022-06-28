@@ -1,0 +1,29 @@
+import Image from 'next/image'
+import Head from "next/head";
+import Layout from '../../components/layout'
+
+export const meta = {
+siteTitle: 'Closures'
+}
+
+ <Head>
+        <title>{meta.siteTitle}</title>
+ </Head>
+
+# Closures
+
+This is a list in markdown:
+
+- One
+- Two
+- Three
+
+
+`Heya checking it up`
+
+Checkout my React component:
+
+
+<Image src="/images/profile.jpg" alt="me" height="64" width="64"/>
+
+export default ({ children }) => <Layout >{children}</Layout>
